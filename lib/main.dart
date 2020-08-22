@@ -3,8 +3,7 @@ import 'package:Chat_app/views/signup.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 
-Future<Null> main() async {
-  await Firebase.initializeApp();
+void main() {
   runApp(MyApp());
 }
 

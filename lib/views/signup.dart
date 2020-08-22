@@ -9,7 +9,7 @@ class Signup extends StatefulWidget {
 
 class _SignupState extends State<Signup> {
   bool isLoading = false;
-  AuthMethods authMethods = new AuthMethods();
+
   final formkey = GlobalKey<FormState>();
   TextEditingController usernameedit = new TextEditingController();
   TextEditingController emailedit = new TextEditingController();
@@ -19,12 +19,6 @@ class _SignupState extends State<Signup> {
     if (formkey.currentState.validate()) {
       setState(() {
         isLoading = true;
-      });
-
-      authMethods
-          .signUpwithEmail(emailedit.text, passwordedit.text)
-          .then((value) {
-        print("$value");
       });
     }
   }
