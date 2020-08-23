@@ -1,15 +1,18 @@
 import 'package:Chat_app/services/auth.dart';
+import 'package:Chat_app/views/chatroomsscreen.dart';
 import 'package:Chat_app/widgets/widget.dart';
 import 'package:flutter/material.dart';
 
 class Signup extends StatefulWidget {
+  final Function toggle;
+  Signup(this.toggle);
   @override
   _SignupState createState() => _SignupState();
 }
 
 class _SignupState extends State<Signup> {
   bool isLoading = false;
-
+  AuthMethod authMethod = new AuthMethod();
   final formkey = GlobalKey<FormState>();
   TextEditingController usernameedit = new TextEditingController();
   TextEditingController emailedit = new TextEditingController();
@@ -21,6 +24,11 @@ class _SignupState extends State<Signup> {
         isLoading = true;
       });
     }
+    authMethod.signUpwithEmail(emailedit.text, passwordedit.text).then((value) {
+      print("$value");
+      Navigator.pushReplacement(
+          context, MaterialPageRoute(builder: (context) => ChatRoom()));
+    });
   }
 
   @override
@@ -151,9 +159,17 @@ class _SignupState extends State<Signup> {
                             "Already have account?  ",
                             style: bigetextfieldstyle(),
                           ),
-                          Text(
-                            "SignIn now",
-                            style: bigetextfieldstyle(),
+                          GestureDetector(
+                            onTap: () {
+                              widget.toggle();
+                            },
+                            child: Container(
+                              padding: EdgeInsets.symmetric(vertical: 8),
+                              child: Text(
+                                "SignIn now",
+                                style: bigetextfieldstyle(),
+                              ),
+                            ),
                           ),
                         ],
                       ),

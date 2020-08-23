@@ -2,6 +2,8 @@ import 'package:Chat_app/widgets/widget.dart';
 import 'package:flutter/material.dart';
 
 class SignIn extends StatefulWidget {
+  final Function toggle;
+  SignIn(this.toggle);
   @override
   _SignInState createState() => _SignInState();
 }
@@ -91,9 +93,17 @@ class _SignInState extends State<SignIn> {
                       "Don't have account?  ",
                       style: bigetextfieldstyle(),
                     ),
-                    Text(
-                      "Register now",
-                      style: bigetextfieldstyle(),
+                    GestureDetector(
+                      onTap: () {
+                        widget.toggle();
+                      },
+                      child: Container(
+                        padding: EdgeInsets.symmetric(vertical: 8),
+                        child: Text(
+                          "Register now",
+                          style: bigetextfieldstyle(),
+                        ),
+                      ),
                     ),
                   ],
                 ),
