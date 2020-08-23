@@ -32,6 +32,9 @@ class _ChatRoomState extends State<ChatRoom> {
           ),
         ],
       ),
+      floatingActionButton: FloatingActionButton(
+        child: Icon(Icons.search),
+      ),
     );
   }
 }
