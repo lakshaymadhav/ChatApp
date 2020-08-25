@@ -1,4 +1,6 @@
+import 'package:Chat_app/Helper/helperfunc.dart';
 import 'package:Chat_app/services/auth.dart';
+import 'package:Chat_app/services/database.dart';
 import 'package:Chat_app/views/chatroomsscreen.dart';
 import 'package:Chat_app/widgets/widget.dart';
 import 'package:flutter/material.dart';
@@ -13,6 +15,8 @@ class Signup extends StatefulWidget {
 class _SignupState extends State<Signup> {
   bool isLoading = false;
   AuthMethod authMethod = new AuthMethod();
+  DatabaseMethods databaseMethods = new DatabaseMethods();
+  HelperFunc helperFunc = new HelperFunc();
   final formkey = GlobalKey<FormState>();
   TextEditingController usernameedit = new TextEditingController();
   TextEditingController emailedit = new TextEditingController();
@@ -20,15 +24,27 @@ class _SignupState extends State<Signup> {
 
   signMeUp() {
     if (formkey.currentState.validate()) {
+      Map<String, String> userInfoMap = {
+        "name": usernameedit.text,
+        "email": emailedit.text
+      };
+
+      HelperFunc.saveUserEmailSharedPref(emailedit.text);
+      HelperFunc.saveUserNameSharedPref(usernameedit.text);
+
       setState(() {
         isLoading = true;
       });
+
+      authMethod
+          .signUpwithEmail(emailedit.text, passwordedit.text)
+          .then((value) {
+        databaseMethods.uploadUserInfo(userInfoMap);
+        HelperFunc.saveUserLoginSharedPref(true);
+        Navigator.pushReplacement(
+            context, MaterialPageRoute(builder: (context) => ChatRoom()));
+      });
     }
-    authMethod.signUpwithEmail(emailedit.text, passwordedit.text).then((value) {
-      print("$value");
-      Navigator.pushReplacement(
-          context, MaterialPageRoute(builder: (context) => ChatRoom()));
-    });
   }
 
   @override
