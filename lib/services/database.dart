@@ -32,4 +32,31 @@ class DatabaseMethods {
       print(e.toString());
     });
   }
+
+  addConvMsgs(String chatRoomId, messageMap) {
+    Firestore.instance
+        .collection("ChatRoom")
+        .document(chatRoomId)
+        .collection("chats")
+        .add(messageMap)
+        .catchError((e) {
+      print(e.toString());
+    });
+  }
+
+  getConvMsgs(String chatRoomId) async {
+    return await Firestore.instance
+        .collection("ChatRoom")
+        .document(chatRoomId)
+        .collection("chats")
+        .orderBy("time", descending: false)
+        .snapshots();
+  }
+
+  getChatRooms(String userName) async {
+    return await Firestore.instance
+        .collection("ChatRoom")
+        .where("users", arrayContains: userName)
+        .snapshots();
+  }
 }

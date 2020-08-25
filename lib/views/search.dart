@@ -53,7 +53,7 @@ class _SearchScreenState extends State<SearchScreen> {
       Navigator.push(
           context,
           MaterialPageRoute(
-            builder: (context) => Conversation(),
+            builder: (context) => Conversation(ChatRoomId),
           ));
     } else {
       print("username is same");
