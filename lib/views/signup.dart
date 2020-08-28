@@ -111,21 +111,6 @@ class _SignupState extends State<Signup> {
                         ),
                       ),
                       SizedBox(height: 8),
-                      Container(
-                        alignment: Alignment.centerRight,
-                        child: Container(
-                          padding: EdgeInsets.all(10),
-                          decoration: BoxDecoration(
-                            color: Color(0xff202c3b),
-                            borderRadius: BorderRadius.circular(15),
-                          ),
-                          child: Text(
-                            "Forgot Password?",
-                            style: simpletextfieldstyle(),
-                          ),
-                        ),
-                      ),
-                      SizedBox(height: 8),
                       GestureDetector(
                         onTap: () {
                           signMeUp();
@@ -147,22 +132,6 @@ class _SignupState extends State<Signup> {
                             "Sign Up",
                             style: TextStyle(color: Colors.white, fontSize: 17),
                           ),
-                        ),
-                      ),
-                      SizedBox(
-                        height: 16,
-                      ),
-                      Container(
-                        alignment: Alignment.center,
-                        width: MediaQuery.of(context).size.width,
-                        padding: EdgeInsets.symmetric(vertical: 20),
-                        decoration: BoxDecoration(
-                          color: Colors.white,
-                          borderRadius: BorderRadius.circular(30),
-                        ),
-                        child: Text(
-                          "Sign Up with Google",
-                          style: TextStyle(color: Colors.black87, fontSize: 17),
                         ),
                       ),
                       SizedBox(
